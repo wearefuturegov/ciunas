@@ -12,7 +12,7 @@ module Ciunas
       if env['X-SILENCE-LOGGER'] || @silenced.any? {|m| m === env['PATH_INFO'] }
         begin
           # temporarily set the rails log level to error
-          tmp_log_level = ActiveSupport::BufferedLogger::Severity::ERROR
+          tmp_log_level = ActiveSupport::Logger::Severity::ERROR
           old_logger_level, Rails.logger.level = Rails.logger.level, tmp_log_level
           @app.call(env)
         ensure
